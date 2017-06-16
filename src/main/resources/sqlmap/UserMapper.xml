@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dt.system.mapper.UserMapper">
+	<sql id="Base_Column_List">
+		ID, LOGIN_NAME as 'loginName', NAME, PASSWORD, SALT,
+		BIRTHDAY, GENDER,
+		EMAIL, PHONE,
+		ICON, CREATE_DATE as 'createTime',
+		STATE, LOGIN_COUNT as 'loginCount', PREVIOUS_VISIT as 'previousVisit',
+		LAST_VISIT as 'lastVisit',
+		DEL_FLAG as 'delFlag', DESCRIPTION
+	</sql>
+	<select id="selectByPrimaryKey" resultType="com.dt.system.entity.User"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from user
+		where ID = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete user from user,user_role,user_org where user.ID = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insertSelective" parameterType="com.dt.system.entity.User">
+		insert into user
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				ID,
+			</if>
+			<if test="loginName != null">
+				LOGIN_NAME,
+			</if>
+			<if test="name != null">
+				NAME,
+			</if>
+			<if test="password != null">
+				PASSWORD,
+			</if>
+			<if test="salt != null">
+				SALT,
+			</if>
+			<if test="birthday != null">
+				BIRTHDAY,
+			</if>
+			<if test="gender != null">
+				GENDER,
+			</if>
+			<if test="email != null">
+				EMAIL,
+			</if>
+			<if test="phone != null">
+				PHONE,
+			</if>
+			<if test="icon != null">
+				ICON,
+			</if>
+			<if test="createTime != null">
+				CREATE_DATE,
+			</if>
+			<if test="state != null">
+				STATE,
+			</if>
+			<if test="loginCount != null">
+				LOGIN_COUNT,
+			</if>
+			<if test="previousVisit != null">
+				PREVIOUS_VISIT,
+			</if>
+			<if test="lastVisit != null">
+				LAST_VISIT,
+			</if>
+			<if test="delFlag != null">
+				DEL_FLAG,
+			</if>
+			<if test="description != null">
+				DESCRIPTION,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="loginName != null">
+				#{loginName,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null">
+				#{password,jdbcType=VARCHAR},
+			</if>
+			<if test="salt != null">
+				#{salt,jdbcType=VARCHAR},
+			</if>
+			<if test="birthday != null">
+				#{birthday,jdbcType=TIMESTAMP},
+			</if>
+			<if test="gender != null">
+				#{gender,jdbcType=SMALLINT},
+			</if>
+			<if test="email != null">
+				#{email,jdbcType=VARCHAR},
+			</if>
+			<if test="phone != null">
+				#{phone,jdbcType=VARCHAR},
+			</if>
+			<if test="icon != null">
+				#{icon,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="state != null">
+				#{state,jdbcType=CHAR},
+			</if>
+			<if test="loginCount != null">
+				#{loginCount,jdbcType=INTEGER},
+			</if>
+			<if test="previousVisit != null">
+				#{previousVisit,jdbcType=TIMESTAMP},
+			</if>
+			<if test="lastVisit != null">
+				#{lastVisit,jdbcType=TIMESTAMP},
+			</if>
+			<if test="delFlag != null">
+				#{delFlag,jdbcType=VARCHAR},
+			</if>
+			<if test="description != null">
+				#{description,jdbcType=LONGVARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.dt.system.entity.User">
+		update user
+		<set>
+			<if test="loginName != null">
+				LOGIN_NAME = #{loginName,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				NAME = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null">
+				PASSWORD = #{password,jdbcType=VARCHAR},
+			</if>
+			<if test="salt != null">
+				SALT = #{salt,jdbcType=VARCHAR},
+			</if>
+			<if test="birthday != null">
+				BIRTHDAY = #{birthday,jdbcType=TIMESTAMP},
+			</if>
+			<if test="gender != null">
+				GENDER = #{gender,jdbcType=SMALLINT},
+			</if>
+			<if test="email != null">
+				EMAIL = #{email,jdbcType=VARCHAR},
+			</if>
+			<if test="phone != null">
+				PHONE = #{phone,jdbcType=VARCHAR},
+			</if>
+			<if test="icon != null">
+				ICON = #{icon,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				CREATE_DATE = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="state != null">
+				STATE = #{state,jdbcType=CHAR},
+			</if>
+			<if test="loginCount != null">
+				LOGIN_COUNT = #{loginCount,jdbcType=INTEGER},
+			</if>
+			<if test="previousVisit != null">
+				PREVIOUS_VISIT = #{previousVisit,jdbcType=TIMESTAMP},
+			</if>
+			<if test="lastVisit != null">
+				LAST_VISIT = #{lastVisit,jdbcType=TIMESTAMP},
+			</if>
+			<if test="delFlag != null">
+				DEL_FLAG = #{delFlag,jdbcType=VARCHAR},
+			</if>
+			<if test="description != null">
+				DESCRIPTION = #{description,jdbcType=LONGVARCHAR},
+			</if>
+		</set>
+		where ID = #{id,jdbcType=INTEGER}
+	</update>
+	<select id="findByLoginName" resultType="com.dt.system.entity.User"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from user
+		where LOGIN_NAME = #{loginName}
+	</select>
+	<select id="selectList" resultType="com.dt.system.entity.User">
+		select
+		<include refid="Base_Column_List" />
+		from user
+		<if test="where!=null and where!=''">
+			where ${where}
+		</if>
+	</select>
+</mapper>

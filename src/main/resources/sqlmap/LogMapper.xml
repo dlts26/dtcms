@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dt.system.mapper.LogMapper">
+	<sql id="Base_Column_List">
+		ID, OPERATION_CODE as 'operationCode', CREATER, CREATE_DATE
+		as 'createTime', TYPE, OS,
+		BROWSER, IP, MAC,
+		EXECUTE_TIME as
+		'executeTime',
+		DESCRIPTION, REQUEST_PARAM as 'requestParam'
+	</sql>
+	<select id="selectByPrimaryKey" resultType="com.dt.system.entity.Log"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from log
+		where ID = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from log
+		where ID = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insertSelective" parameterType="com.dt.system.entity.Log">
+		insert into log
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				ID,
+			</if>
+			<if test="operationCode != null">
+				OPERATION_CODE,
+			</if>
+			<if test="creater != null">
+				CREATER,
+			</if>
+			<if test="createDate != null">
+				CREATE_DATE,
+			</if>
+			<if test="type != null">
+				TYPE,
+			</if>
+			<if test="os != null">
+				OS,
+			</if>
+			<if test="browser != null">
+				BROWSER,
+			</if>
+			<if test="ip != null">
+				IP,
+			</if>
+			<if test="mac != null">
+				MAC,
+			</if>
+			<if test="executeTime != null">
+				EXECUTE_TIME,
+			</if>
+			<if test="description != null">
+				DESCRIPTION,
+			</if>
+			<if test="requestParam != null">
+				REQUEST_PARAM,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="operationCode != null">
+				#{operationCode,jdbcType=VARCHAR},
+			</if>
+			<if test="creater != null">
+				#{creater,jdbcType=VARCHAR},
+			</if>
+			<if test="createDate != null">
+				#{createDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="type != null">
+				#{type,jdbcType=INTEGER},
+			</if>
+			<if test="os != null">
+				#{os,jdbcType=VARCHAR},
+			</if>
+			<if test="browser != null">
+				#{browser,jdbcType=VARCHAR},
+			</if>
+			<if test="ip != null">
+				#{ip,jdbcType=VARCHAR},
+			</if>
+			<if test="mac != null">
+				#{mac,jdbcType=VARCHAR},
+			</if>
+			<if test="executeTime != null">
+				#{executeTime,jdbcType=INTEGER},
+			</if>
+			<if test="description != null">
+				#{description,jdbcType=VARCHAR},
+			</if>
+			<if test="requestParam != null">
+				#{requestParam,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.dt.system.entity.Log">
+		update log
+		<set>
+			<if test="operationCode != null">
+				OPERATION_CODE = #{operationCode,jdbcType=VARCHAR},
+			</if>
+			<if test="creater != null">
+				CREATER = #{creater,jdbcType=VARCHAR},
+			</if>
+			<if test="createDate != null">
+				CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="type != null">
+				TYPE = #{type,jdbcType=INTEGER},
+			</if>
+			<if test="os != null">
+				OS = #{os,jdbcType=VARCHAR},
+			</if>
+			<if test="browser != null">
+				BROWSER = #{browser,jdbcType=VARCHAR},
+			</if>
+			<if test="ip != null">
+				IP = #{ip,jdbcType=VARCHAR},
+			</if>
+			<if test="mac != null">
+				MAC = #{mac,jdbcType=VARCHAR},
+			</if>
+			<if test="executeTime != null">
+				EXECUTE_TIME = #{executeTime,jdbcType=INTEGER},
+			</if>
+			<if test="description != null">
+				DESCRIPTION = #{description,jdbcType=VARCHAR},
+			</if>
+			<if test="requestParam != null">
+				REQUEST_PARAM = #{requestParam,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where ID = #{id,jdbcType=INTEGER}
+	</update>
+	<select id="selectList" resultType="com.dt.system.entity.Log">
+		select
+		<include refid="Base_Column_List" />
+		from log
+		<if test="where!=null and where!=''">
+			where ${where}
+		</if>
+	</select>
+	<select id="deleteBatch">
+		select * from log where id in
+		<foreach collection="list" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</select>
+</mapper>
