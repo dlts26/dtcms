@@ -138,19 +138,10 @@
 			<scope>provided</scope>
 		</dependency>
 		<!-- connection pool -->
-		<!-- druid -->
-		<dependency>
-			<groupId>com.alibaba</groupId>
-			<artifactId>druid</artifactId>
-			<version>0.2.23</version>
-		</dependency>
-
 		<!-- jdbc driver -->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>5.1.30</version>
-			<scope>runtime</scope>
 		</dependency>
 		<!-- jdbc driver -->
 		<dependency>
