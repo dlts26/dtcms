@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.dt.system.mapper.UserRoleMapper">
+<mapper namespace="com.dt.cms.mapper.sys.UserRoleMapper">
 	<sql id="Base_Column_List">
 		ID,
 		USER_ID as 'user.id',
 		ROLE_ID as 'role.id'
 	</sql>
-	<select id="selectByPrimaryKey" resultType="com.dt.system.entity.UserRole"
+	<select id="selectByPrimaryKey" resultType="com.dt.cms.domain.sys.UserRole"
 		parameterType="java.lang.Integer">
 		select
 		<include refid="Base_Column_List" />
@@ -18,7 +18,7 @@
 		user_role
 		where ID = #{id,jdbcType=INTEGER}
 	</delete>
-	<insert id="insertSelective" parameterType="com.dt.system.entity.UserRole">
+	<insert id="insertSelective" parameterType="com.dt.cms.domain.sys.UserRole">
 		insert into user_role
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="id != null">
@@ -43,7 +43,7 @@
 			</if>
 		</trim>
 	</insert>
-	<update id="updateByPrimaryKeySelective" parameterType="com.dt.system.entity.UserRole">
+	<update id="updateByPrimaryKeySelective" parameterType="com.dt.cms.domain.sys.UserRole">
 		update user_role
 		<set>
 			<if test="user!=null and user.id != null">
@@ -61,7 +61,7 @@
 	<select id="deleteUR" >
 	    delete user_role where USER_ID=#{userId,jdbcType=INTEGER} and ROLE_ID=#{roleId,jdbcType=INTEGER}
 	</select>
-	<select id="selectList" resultType="com.dt.system.entity.UserRole">
+	<select id="selectList" resultType="com.dt.cms.domain.sys.UserRole">
 		select
 		<include refid="Base_Column_List" />
 		from user_role

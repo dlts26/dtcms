@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.dt.system.mapper.DictMapper">
+<mapper namespace="com.dt.cms.mapper.sys.DictMapper">
 	<sql id="Base_Column_List">
 		ID, LABEL, VALUE, TYPE, DESCRIPTION, SORT, REMARK, DEL_FLAG as 'delFlag'
 	</sql>
-	<select id="selectByPrimaryKey" resultType="com.dt.system.entity.Dict"
+	<select id="selectByPrimaryKey" resultType="com.dt.cms.domain.sys.Dict"
 		parameterType="java.lang.Integer">
 		select
 		<include refid="Base_Column_List" />
@@ -15,7 +15,7 @@
 		delete from dict
 		where ID = #{id,jdbcType=INTEGER}
 	</delete>
-	<insert id="insertSelective" parameterType="com.dt.system.entity.Dict">
+	<insert id="insertSelective" parameterType="com.dt.cms.domain.sys.Dict">
 		insert into dict
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="id != null">
@@ -70,7 +70,7 @@
 			</if>
 		</trim>
 	</insert>
-	<update id="updateByPrimaryKeySelective" parameterType="com.dt.system.entity.Dict">
+	<update id="updateByPrimaryKeySelective" parameterType="com.dt.cms.domain.sys.Dict">
 		update dict
 		<set>
 			<if test="label != null">
@@ -97,7 +97,7 @@
 		</set>
 		where ID = #{id,jdbcType=INTEGER}
 	</update>
-	<select id="selectList" resultType="com.dt.system.entity.Dict">
+	<select id="selectList" resultType="com.dt.cms.domain.sys.Dict">
 		select
 		<include refid="Base_Column_List" />
 		from dict

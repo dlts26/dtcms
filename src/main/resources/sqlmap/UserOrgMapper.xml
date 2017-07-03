@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.dt.system.mapper.UserOrgMapper">
+<mapper namespace="com.dt.cms.mapper.sys.UserOrgMapper">
 	<sql id="Base_Column_List">
 		id,
 		user_id as user.id,
 		org_id as organization.id
 	</sql>
-	<select id="selectByPrimaryKey" resultType="com.dt.system.entity.UserOrg"
+	<select id="selectByPrimaryKey" resultType="com.dt.cms.domain.sys.UserOrg"
 		parameterType="java.lang.Integer">
 		select
 		<include refid="Base_Column_List" />
@@ -19,7 +19,7 @@
 		user_org
 		where id = #{id,jdbcType=INTEGER}
 	</delete>
-	<insert id="insert" parameterType="com.dt.system.entity.UserOrg">
+	<insert id="insert" parameterType="com.dt.cms.domain.sys.UserOrg">
 		insert into user_org (id,
 		user_id, org_id)
 		values (#{id,jdbcType=INTEGER},
@@ -27,7 +27,7 @@
 		#{organization.id,jdbcType=INTEGER}
 		)
 	</insert>
-	<insert id="insertSelective" parameterType="com.dt.system.entity.UserOrg">
+	<insert id="insertSelective" parameterType="com.dt.cms.domain.sys.UserOrg">
 		insert into user_org
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="id != null">
@@ -52,7 +52,7 @@
 			</if>
 		</trim>
 	</insert>
-	<update id="updateByPrimaryKeySelective" parameterType="com.dt.system.entity.UserOrg">
+	<update id="updateByPrimaryKeySelective" parameterType="com.dt.cms.domain.sys.UserOrg">
 		update user_org
 		<set>
 			<if test="user!=null and user.id != null">
@@ -64,7 +64,7 @@
 		</set>
 		where id = #{id,jdbcType=INTEGER}
 	</update>
-	<update id="updateByPrimaryKey" parameterType="com.dt.system.entity.UserOrg">
+	<update id="updateByPrimaryKey" parameterType="com.dt.cms.domain.sys.UserOrg">
 		update user_org
 		set user_id = #{user.id,jdbcType=INTEGER},
 		org_id =
@@ -77,7 +77,7 @@
 	<delete id="deleteUO">
 	  delete from user_org where user_id=#{userId,jdbcType=INTEGER}
 	</delete>
-	<select id="selectList" resultType="com.dt.system.entity.UserOrg">
+	<select id="selectList" resultType="com.dt.cms.domain.sys.UserOrg">
 		select
 		<include refid="Base_Column_List" />
 		from user_org

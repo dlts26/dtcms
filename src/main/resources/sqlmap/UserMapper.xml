@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.dt.system.mapper.UserMapper">
+<mapper namespace="com.dt.cms.mapper.sys.UserMapper">
 	<sql id="Base_Column_List">
 		ID, LOGIN_NAME as 'loginName', NAME, PASSWORD, SALT,
 		BIRTHDAY, GENDER,
@@ -10,7 +10,7 @@
 		LAST_VISIT as 'lastVisit',
 		DEL_FLAG as 'delFlag', DESCRIPTION
 	</sql>
-	<select id="selectByPrimaryKey" resultType="com.dt.system.entity.User"
+	<select id="selectByPrimaryKey" resultType="com.dt.cms.domain.sys.User"
 		parameterType="java.lang.Integer">
 		select
 		<include refid="Base_Column_List" />
@@ -20,7 +20,7 @@
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
 		delete user from user,user_role,user_org where user.ID = #{id,jdbcType=INTEGER}
 	</delete>
-	<insert id="insertSelective" parameterType="com.dt.system.entity.User">
+	<insert id="insertSelective" parameterType="com.dt.cms.domain.sys.User">
 		insert into user
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="id != null">
@@ -129,7 +129,7 @@
 			</if>
 		</trim>
 	</insert>
-	<update id="updateByPrimaryKeySelective" parameterType="com.dt.system.entity.User">
+	<update id="updateByPrimaryKeySelective" parameterType="com.dt.cms.domain.sys.User">
 		update user
 		<set>
 			<if test="loginName != null">
@@ -183,14 +183,14 @@
 		</set>
 		where ID = #{id,jdbcType=INTEGER}
 	</update>
-	<select id="findByLoginName" resultType="com.dt.system.entity.User"
+	<select id="findByLoginName" resultType="com.dt.cms.domain.sys.User"
 		parameterType="java.lang.String">
 		select
 		<include refid="Base_Column_List" />
 		from user
 		where LOGIN_NAME = #{loginName}
 	</select>
-	<select id="selectList" resultType="com.dt.system.entity.User">
+	<select id="selectList" resultType="com.dt.cms.domain.sys.User">
 		select
 		<include refid="Base_Column_List" />
 		from user

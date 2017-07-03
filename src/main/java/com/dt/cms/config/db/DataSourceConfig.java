@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
@@ -21,6 +22,7 @@ public class DataSourceConfig {
 		return new com.alibaba.druid.pool.DruidDataSource();
 	}
 
+	@Bean
 	public SqlSessionFactory sqlSessionFactoryBean(@Qualifier("dataSource") DataSource dataSource) throws Exception {
 		SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
 		sqlSessionFactoryBean.setPlugins(new Interceptor[] { new PaginationInterceptor() });
@@ -30,6 +32,7 @@ public class DataSourceConfig {
 		return sqlSessionFactoryBean.getObject();
 	}
 
+	@Bean
 	public DataSourceTransactionManager transactionManager(@Qualifier("dataSource") DataSource dataSource) {
 		return new DataSourceTransactionManager(dataSource);
 	}

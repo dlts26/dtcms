@@ -1,4 +1,4 @@
-package com.dt.cms.shiro.cas;
+package com.dt.cms.shiro;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -17,11 +17,13 @@ import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreato
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.web.filter.DelegatingFilterProxy;
 
+import com.dt.cms.shiro.cas.CasProperties;
+import com.dt.cms.shiro.cas.UserShiroCasRealm;
+
 //@Configuration
-public class ShiroCasConfiguration {
+public class ShiroConfiguration {
 
 	@Bean
 	public EhCacheManager getEhCacheManager() {
@@ -31,8 +33,8 @@ public class ShiroCasConfiguration {
 	}
 
 	@Bean(name = "userShiroCasRealm")
-	public UserShiroCasRealm myShiroCasRealm(EhCacheManager cacheManager) {
-		UserShiroCasRealm realm = new UserShiroCasRealm();
+	public UserShiroRealm myShiroCasRealm(EhCacheManager cacheManager) {
+		UserShiroRealm realm = new UserShiroRealm();
 		realm.setCacheManager(cacheManager);
 		return realm;
 	}
@@ -95,12 +97,12 @@ public class ShiroCasConfiguration {
 	private void loadShiroFilterChain(ShiroFilterFactoryBean shiroFilterFactoryBean, CasFilter casFilter) {
 		// 添加casFilter到shiroFilter中
 		Map<String, Filter> filters = new HashMap<>();
-//		filters.put("casFilter", casFilter);
-//		shiroFilterFactoryBean.setFilters(filters);
+		// filters.put("casFilter", casFilter);
+		// shiroFilterFactoryBean.setFilters(filters);
 		/////////////////////// 下面这些规则配置可以配置到配置文件中 ///////////////////////
 		Map<String, String> chains = new LinkedHashMap<String, String>();
 		// 添加cas过滤器
-//		chains.put("/shiro-cas", "casFilter");// shiro集成cas后，首先添加该规则
+		// chains.put("/shiro-cas", "casFilter");// shiro集成cas后，首先添加该规则
 
 		// 新闻接口
 		chains.put("/news/**", "anon");
@@ -128,17 +130,18 @@ public class ShiroCasConfiguration {
 	 * @return
 	 */
 
-//	@Bean(name = "casFilter")
-//	public CasFilter getCasFilter(@Autowired CasProperties casProperties) {
-//		CasFilter casFilter = new CasFilter();
-//		casFilter.setName("casFilter");
-//		casFilter.setEnabled(true);
-//		// 登录失败后跳转的URL，也就是 Shiro 执行 CasRealm 的
-//		casFilter.setFailureUrl(
-//				casProperties.getCasServerLoginUrl() + "?service=" + casProperties.getServerName() + "/");// 再打开登录页面
-//		casFilter.setSuccessUrl("/");
-//		return casFilter;
-//	}
+	// @Bean(name = "casFilter")
+	// public CasFilter getCasFilter(@Autowired CasProperties casProperties) {
+	// CasFilter casFilter = new CasFilter();
+	// casFilter.setName("casFilter");
+	// casFilter.setEnabled(true);
+	// // 登录失败后跳转的URL，也就是 Shiro 执行 CasRealm 的
+	// casFilter.setFailureUrl(
+	// casProperties.getCasServerLoginUrl() + "?service=" +
+	// casProperties.getServerName() + "/");// 再打开登录页面
+	// casFilter.setSuccessUrl("/");
+	// return casFilter;
+	// }
 
 	/**
 	 * ShiroFilter<br/>

@@ -26,7 +26,7 @@ import com.dt.cms.service.sys.RoleService;
  * 
  * @author Administrator
  */
-@Component("userShiroCasRealm")
+//@Component("userShiroCasRealm")
 public class UserShiroCasRealm extends CasRealm {
 
 	@Autowired

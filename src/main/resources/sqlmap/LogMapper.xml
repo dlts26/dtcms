@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.dt.system.mapper.LogMapper">
+<mapper namespace="com.dt.cms.mapper.sys.LogMapper">
 	<sql id="Base_Column_List">
 		ID, OPERATION_CODE as 'operationCode', CREATER, CREATE_DATE
 		as 'createTime', TYPE, OS,
@@ -9,7 +9,7 @@
 		'executeTime',
 		DESCRIPTION, REQUEST_PARAM as 'requestParam'
 	</sql>
-	<select id="selectByPrimaryKey" resultType="com.dt.system.entity.Log"
+	<select id="selectByPrimaryKey" resultType="com.dt.cms.domain.sys.Log"
 		parameterType="java.lang.Integer">
 		select
 		<include refid="Base_Column_List" />
@@ -20,7 +20,7 @@
 		delete from log
 		where ID = #{id,jdbcType=INTEGER}
 	</delete>
-	<insert id="insertSelective" parameterType="com.dt.system.entity.Log">
+	<insert id="insertSelective" parameterType="com.dt.cms.domain.sys.Log">
 		insert into log
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="id != null">
@@ -99,7 +99,7 @@
 			</if>
 		</trim>
 	</insert>
-	<update id="updateByPrimaryKeySelective" parameterType="com.dt.system.entity.Log">
+	<update id="updateByPrimaryKeySelective" parameterType="com.dt.cms.domain.sys.Log">
 		update log
 		<set>
 			<if test="operationCode != null">
@@ -138,7 +138,7 @@
 		</set>
 		where ID = #{id,jdbcType=INTEGER}
 	</update>
-	<select id="selectList" resultType="com.dt.system.entity.Log">
+	<select id="selectList" resultType="com.dt.cms.domain.sys.Log">
 		select
 		<include refid="Base_Column_List" />
 		from log
