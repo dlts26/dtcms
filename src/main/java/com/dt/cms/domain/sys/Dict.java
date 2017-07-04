@@ -1,8 +1,8 @@
 package com.dt.cms.domain.sys;
 
-import com.dt.cms.domain.BaseEntity;
+import com.dt.cms.domain.BaseDomain;
 
-public class Dict extends BaseEntity<Dict> {
+public class Dict extends BaseDomain<Dict> {
 
 	private static final long serialVersionUID = 1L;
 

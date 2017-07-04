@@ -3,7 +3,7 @@ package com.dt.cms.domain.sys;
 import java.sql.Timestamp;
 import java.util.Date;
 
-import com.dt.cms.domain.BaseEntity;
+import com.dt.cms.domain.BaseDomain;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 /**
@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
  * @date 2017年7月3日
  */
 
-public class Log extends BaseEntity<Log> {
+public class Log extends BaseDomain<Log> {
 
 	private static final long serialVersionUID = 1L;
 	// Fields

@@ -1,6 +1,6 @@
 package com.dt.cms.domain.sys;
 
-import com.dt.cms.domain.BaseEntity;
+import com.dt.cms.domain.BaseDomain;
 
 /**
  * 
@@ -8,7 +8,7 @@ import com.dt.cms.domain.BaseEntity;
  * @Mail yhl@feheadline.com
  * @Date 2016年5月5日
  */
-public class RolePermission extends BaseEntity<RolePermission> {
+public class RolePermission extends BaseDomain<RolePermission> {
 
 	// Fields
 	private static final long serialVersionUID = 1L;

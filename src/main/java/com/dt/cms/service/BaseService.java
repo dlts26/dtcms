@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.dt.cms.domain.BaseEntity;
+import com.dt.cms.domain.BaseDomain;
 import com.dt.cms.entity.Page;
 import com.dt.cms.mapper.BaseMapper;
 import com.dt.cms.persistant.PropertyFilter;
@@ -19,7 +19,7 @@ import com.dt.cms.persistant.PropertyFilter.MatchType;
  * @Mail yhl@feheadline.com
  * @Date 2016年5月10日
  */
-public abstract class BaseService<M extends BaseMapper<T>, T extends BaseEntity<T>> {
+public abstract class BaseService<M extends BaseMapper<T>, T extends BaseDomain<T>> {
 
 	@Autowired
 	M baseMapper;

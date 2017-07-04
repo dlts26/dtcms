@@ -26,7 +26,7 @@
         <div id="northPanel" data-options="region: 'north', border: false" style="height: 80px; overflow: hidden;">
             <div id="topbar" class="top-bar">
                 <div class="top-bar-left">
-                    <h1 style="margin-left: 10px; margin-top: 10px;color: #fff"><span style="color: #3F4752">资讯标签后台管理系统</span></h1>
+                    <h1 style="margin-left: 10px; margin-top: 10px;color: #fff"><span style="color: #3F4752">后台管理系统</span></h1>
                 </div>
                 <div class="top-bar-right">
                     <div id="timerSpan"></div>
@@ -38,7 +38,7 @@
             <div id="toolbar" class="panel-header panel-header-noborder top-toolbar">
                 <div id="infobar">
                     <span class="icon-hamburg-user" style="padding-left: 25px; background-position: left center;">
-                      <shiro:principal type="java.lang.String"/>，您好
+                       <shiro:principal property="name"/>，您好
                     </span>
                 </div>
                
@@ -50,6 +50,7 @@
 						<div id="btnFullScreen" data-options="iconCls:'key'">全屏切换</div>
 						<div id="btnExit" data-options="iconCls:'logout'">退出系统</div>
 					</div>
+					<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-standard-key" plain="true" onclick="updatePwd()">修改密码</a>
                     <a id="btnShowNorth" class="easyui-linkbutton" data-options="plain: true, iconCls: 'layout-button-down'" style="display: none;"></a>
                 </div>
             </div>
@@ -139,6 +140,32 @@ $('.easyui-linkbutton').on('click', function(){
     $(this).linkbutton({selected:true});  
 });   
 
+//弹窗修改
+function updatePwd(){
+	d=$("#dlg").dialog({   
+	    title: '修改密码',    
+	    width: 300,    
+	    height: 220,    
+	    href:'${ctx}/system/user/updatePwd',
+	    maximizable:true,
+	    modal:true,
+	    buttons:[{
+			text:'修改',
+			handler:function(){
+				var result = $('#mainform').submit();
+				$.messager.alert("消息提示", "修改密码成功，需重新登录", "info", function(){
+					window.onbeforeunload = null;
+	                location.href='a/logout';
+				});
+			}
+		},{
+			text:'取消',
+			handler:function(){
+					d.panel('close');
+				}
+		}]
+	});
+}
 </script>
     
 </body>

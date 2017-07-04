@@ -9,20 +9,20 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang3.StringEscapeUtils;
+import org.apache.shiro.SecurityUtils;
 //import org.apache.shiro.SecurityUtils;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 
 import com.dt.cms.entity.Page;
+import com.dt.cms.shiro.UserShiroRealm.ShiroUser;
 import com.dt.cms.util.DateUtils;
 import com.dt.cms.util.StringUtils;
 
 /**
  * 基础控制器 其他控制器继承此控制器获得日期字段类型转换和防止XSS攻击的功能
- * 
- * @description
- * @author ty
- * @date 2014年3月19日
+ * @author 岳海亮
+ * @date 2017年7月4日
  */
 public class BaseController {
 
@@ -100,9 +100,9 @@ public class BaseController {
 	 * 
 	 * @return 当前登录用户
 	 */
-/*	public Integer getCurUserId() {
+    public Integer getCurUserId() {
 		ShiroUser sUser = (ShiroUser) SecurityUtils.getSubject().getPrincipal();
 		return sUser.getId();
-	}*/
+	}
 
 }

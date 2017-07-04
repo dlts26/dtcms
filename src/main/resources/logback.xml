@@ -12,8 +12,4 @@
 	<root level="INFO">
 		<appender-ref ref="Console" />
 	</root>
-  
-    <logger name="com.embd.text.taglib" level="debug" additivity="false">
-      <appender-ref ref="Console" />
-    </logger>
 </configuration>

@@ -2,6 +2,12 @@ package com.dt.cms.config.db;
 
 import com.dt.cms.util.StringUtils;
 
+
+/**
+ * 分页和排序的mysql方言实现
+ * @author 岳海亮
+ * @date 2017年7月4日
+ */
 public class MySql5Dialect extends Dialect {
 
 	/**

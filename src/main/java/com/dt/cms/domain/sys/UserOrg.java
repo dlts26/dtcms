@@ -1,6 +1,6 @@
 package com.dt.cms.domain.sys;
 
-import com.dt.cms.domain.BaseEntity;
+import com.dt.cms.domain.BaseDomain;
 
 /**
  * 用户机构model
@@ -10,7 +10,7 @@ import com.dt.cms.domain.BaseEntity;
  * @Date 2016年5月5日
  */
 
-public class UserOrg extends BaseEntity<UserOrg> {
+public class UserOrg extends BaseDomain<UserOrg> {
 
 	// Fields
 

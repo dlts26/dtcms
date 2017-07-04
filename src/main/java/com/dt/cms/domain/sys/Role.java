@@ -1,8 +1,8 @@
 package com.dt.cms.domain.sys;
 
-import com.dt.cms.domain.BaseEntity;
+import com.dt.cms.domain.BaseDomain;
 
-public class Role extends BaseEntity<Role>{
+public class Role extends BaseDomain<Role>{
     /**
 	 * 
 	 */

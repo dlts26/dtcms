@@ -143,6 +143,7 @@ function save(){
 		for(var i=0,j=data.length;i<j;i++){
 			newPermissionList.push(data[i].id);
 		}
+		
 		if(roleId==null) {
 			parent.$.messager.show({ title : "提示",msg: "请选择角色！", position: "bottomRight" });
 			return;

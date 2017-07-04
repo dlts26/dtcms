@@ -40,7 +40,6 @@ var d;
 var menuDg;
 var menuId=0;
 var parentPermId;
-var parentPermName;
 $(function(){   
 	menuDg=$('#menuDg').treegrid({  
 	method: "get",
@@ -67,7 +66,6 @@ $(function(){
     onClickRow:function(rowData){
     	menuId=rowData.id;
     	parentPermId=rowData.id;
-    	parentPermName=rowData.name;
     	dg.datagrid('reload',{pid:menuId});
     }
 	});
@@ -173,9 +171,9 @@ function upd(){
 
 //快速添加基本操作
 function addBase(){
-	 $.ajax({
+	/* $.ajax({
 		type:'get',
-		url:"${ctx}/system/permission/createBase/"+parentPermName+"/"+parentPermId,
+		url:"${ctx}/system/permission/createBase/"+parentPermId,
 		success: function(data){
 			if(data=='success'){
 				dg.datagrid('reload');
@@ -184,7 +182,7 @@ function addBase(){
 				parent.$.messager.alert('提示',data);
 			} 
 		}
-	});
+	}); */
 }
 </script>
 </body>

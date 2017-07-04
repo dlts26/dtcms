@@ -13,6 +13,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
+
+/**
+ * 数据库的Java config类
+ * @author 岳海亮
+ * @date 2017年7月4日
+ */
 @Configuration
 @MapperScan(value = { "com.dt.cms.mapper", "com.dt.cms.mapper.sys" })
 public class DataSourceConfig {

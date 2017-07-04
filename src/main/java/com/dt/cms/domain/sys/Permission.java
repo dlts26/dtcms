@@ -1,8 +1,8 @@
 package com.dt.cms.domain.sys;
 
-import com.dt.cms.domain.BaseEntity;
+import com.dt.cms.domain.BaseDomain;
 
-public class Permission extends BaseEntity<Permission> {
+public class Permission extends BaseDomain<Permission> {
 
 	/**
 	 * 

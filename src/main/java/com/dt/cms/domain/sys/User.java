@@ -4,10 +4,10 @@ import java.sql.Timestamp;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.dt.cms.domain.BaseEntity;
+import com.dt.cms.domain.BaseDomain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-public class User extends BaseEntity<User> {
+public class User extends BaseDomain<User> {
 	/**
 	 * 
 	 */

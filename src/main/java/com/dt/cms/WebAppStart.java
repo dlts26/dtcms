@@ -9,6 +9,11 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
+/**
+ * 启动函数
+ * @author 岳海亮
+ * @date 2017年7月4日
+ */
 @SpringBootApplication
 @EnableScheduling
 @EnableAutoConfiguration
