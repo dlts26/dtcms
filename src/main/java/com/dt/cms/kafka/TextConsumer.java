@@ -23,7 +23,7 @@ import com.dt.cms.hbase.HBaseDAO;
  * @author 岳海亮
  * @date 2017年5月5日
  */
-@Component
+//@Component
 public class TextConsumer {
 
 	private static Logger logger = LoggerFactory.getLogger(TextConsumer.class);

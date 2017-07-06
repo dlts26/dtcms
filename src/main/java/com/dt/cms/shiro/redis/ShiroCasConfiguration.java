@@ -1,4 +1,4 @@
-package com.dt.cms.shiro.cas;
+package com.dt.cms.shiro.redis;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -6,49 +6,70 @@ import java.util.Map;
 
 import javax.servlet.Filter;
 
-import org.apache.shiro.cache.ehcache.EhCacheManager;
 import org.apache.shiro.cas.CasFilter;
 import org.apache.shiro.cas.CasSubjectFactory;
+import org.apache.shiro.session.mgt.SessionManager;
+import org.apache.shiro.session.mgt.eis.SessionDAO;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
+import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.filter.DelegatingFilterProxy;
 
+import com.dt.cms.shiro.cas.CasProperties;
+import com.dt.cms.shiro.cas.UserShiroCasRealm;
+
 /**
- * 带有cas的shiro配置，要先实现
- * 
+ * 使用redis做缓存的shiro的Java Config，要自己实现相应的CachManager{@link RedisCacheManager.java}、{@link RedisSessionDAO.java}
+ * 和 {@link ShiroCache.java
  * @author 岳海亮
  * @date 2017年7月6日
  */
-// @Configuration
+//@Configuration
 public class ShiroCasConfiguration {
 
+	/*
+	 * 用ehcache设置shiro的缓存
+	 * 
+	 * @Bean public EhCacheManager getEhCacheManager() { EhCacheManager em = new
+	 * EhCacheManager(); em.setCacheManagerConfigFile("classpath:ehcache.xml");
+	 * return em; }
+	 */	
 	@Bean
-	public EhCacheManager getEhCacheManager() {
-		EhCacheManager em = new EhCacheManager();
-		em.setCacheManagerConfigFile("classpath:ehcache.xml");
-		return em;
+	public SessionDAO getSessionDAO(){
+		return new RedisSessionDAO();
+	}
+
+	@Bean
+	public RedisCacheManager redisCacheManager() {
+		return new RedisCacheManager();
+	}
+
+	@Bean
+	public SessionManager sessionManager() {
+		DefaultWebSessionManager sessionManager = new DefaultWebSessionManager();
+		sessionManager.setSessionDAO(getSessionDAO());
+//		sessionManager.setGlobalSessionTimeout(1800000); 设置session的超时时间，要比redis中存数据的时间长，否则会出现取到但超时的问题
+		sessionManager.setCacheManager(redisCacheManager());
+		
+		return sessionManager;
 	}
 
 	@Bean(name = "userShiroCasRealm")
-	public UserShiroCasRealm myShiroCasRealm(EhCacheManager cacheManager) {
+	public UserShiroCasRealm getUserShiroCasRealm(RedisCacheManager redisCacheManager) {
 		UserShiroCasRealm realm = new UserShiroCasRealm();
-		realm.setCacheManager(cacheManager);
+		realm.setCacheManager(redisCacheManager());
 		return realm;
 	}
 
 	/**
 	 * 注册DelegatingFilterProxy（Shiro）
-	 *
-	 * @param dispatcherServlet
-	 * @return
-	 * @author SHANHY
-	 * @create 2016年1月13日
+	* @return
 	 */
 	@Bean
 	public FilterRegistrationBean filterRegistrationBean() {
@@ -78,7 +99,8 @@ public class ShiroCasConfiguration {
 		DefaultWebSecurityManager dwsm = new DefaultWebSecurityManager();
 		dwsm.setRealm(userShiroCasRealm);
 		// 用户授权/认证信息Cache, 采用EhCache
-		dwsm.setCacheManager(getEhCacheManager());
+		dwsm.setCacheManager(redisCacheManager());
+		dwsm.setSessionManager(sessionManager());
 		// 指定 SubjectFactory
 		dwsm.setSubjectFactory(new CasSubjectFactory());
 		return dwsm;
@@ -133,8 +155,8 @@ public class ShiroCasConfiguration {
 	 * @return
 	 */
 
-	@Bean
-	public CasFilter getCasFilter(CasProperties casProperties) {
+	@Bean(name = "casFilter")
+	public CasFilter getCasFilter(@Autowired CasProperties casProperties) {
 		CasFilter casFilter = new CasFilter();
 		casFilter.setName("casFilter");
 		casFilter.setEnabled(true);
@@ -146,16 +168,16 @@ public class ShiroCasConfiguration {
 	}
 
 	/**
-	 * 配置相应的shiro过滤器
-	 * 
-	 * @param securityManager
-	 * @param casFilter
-	 * @param casProperties
+	 * ShiroFilter<br/>
+	 * 注意这里参数中的 StudentService 和 IScoreDao 只是一个例子，因为我们在这里可以用这样的方式获取到相关访问数据库的对象，
+	 * 然后读取数据库相关配置，配置到 shiroFilterFactoryBean 的访问规则中。实际项目中，请使用自己的Service来处理业务逻辑。
+	 *
+	 * @param myShiroCasRealm
 	 * @return
 	 */
 	@Bean(name = "shiroFilter")
 	public ShiroFilterFactoryBean getShiroFilterFactoryBean(DefaultWebSecurityManager securityManager,
-			@Autowired CasProperties casProperties) {
+			CasFilter casFilter, @Autowired CasProperties casProperties) {
 		ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
 		// 必须设置 SecurityManager
 		shiroFilterFactoryBean.setSecurityManager(securityManager);
@@ -163,7 +185,7 @@ public class ShiroCasConfiguration {
 		shiroFilterFactoryBean.setLoginUrl(
 				casProperties.getCasServerLoginUrl() + "?service=" + casProperties.getServerName() + "/shiro-cas");
 		shiroFilterFactoryBean.setUnauthorizedUrl("/403");
-		loadShiroFilterChain(shiroFilterFactoryBean, getCasFilter(casProperties));
+		loadShiroFilterChain(shiroFilterFactoryBean, casFilter);
 		return shiroFilterFactoryBean;
 	}
 

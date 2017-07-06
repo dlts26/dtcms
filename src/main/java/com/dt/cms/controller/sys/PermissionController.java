@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dt.cms.controller.BaseController;
+import com.dt.cms.controller.UserUtil;
 import com.dt.cms.domain.sys.Permission;
 import com.dt.cms.service.sys.PermissionService;
-import com.dt.cms.util.UserUtil;
 
 /**
  * 权限controller
@@ -91,8 +91,8 @@ public class PermissionController extends BaseController {
 	@RequestMapping("i/json")
 	@ResponseBody
 	public List<Permission> myPermissionDate() {
-		String userId = UserUtil.getCurrentUserId();
-		List<Permission> permissionList = permissionService.getPermissionsByUserId(Integer.valueOf(userId));
+		int userId = UserUtil.getCurrentUser().getId();
+		List<Permission> permissionList = permissionService.getPermissionsByUserId(userId);
 		return permissionList;
 	}
 

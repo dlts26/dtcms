@@ -7,8 +7,6 @@ import org.apache.hadoop.hbase.HBaseConfiguration;
 import org.apache.hadoop.hbase.client.Connection;
 import org.apache.hadoop.hbase.client.ConnectionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.stereotype.Component;
 
 /**
  * 与hbase建立连接的类
@@ -16,8 +14,8 @@ import org.springframework.stereotype.Component;
  * @author 岳海亮
  * @date 2017年4月28日
  */
-@Component
-@EnableConfigurationProperties(HBaseConfig.class)
+//@Component
+//@EnableConfigurationProperties(HBaseConfig.class)
 public class HBaseConn {
 	private Connection conn;
 

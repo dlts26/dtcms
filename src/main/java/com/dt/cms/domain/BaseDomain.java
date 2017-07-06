@@ -7,14 +7,14 @@ import javax.xml.bind.annotation.XmlTransient;
 
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 
+import com.dt.cms.controller.UserUtil;
 import com.dt.cms.domain.sys.User;
-import com.dt.cms.util.UserUtil;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-
 /**
  * 基础域定义，封装一些公用信息
+ * 
  * @author 岳海亮
  * @date 2017年7月4日
  * @param <T>
@@ -23,7 +23,6 @@ public class BaseDomain<T> implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	
 	/**
 	 * 当前用户
 	 */

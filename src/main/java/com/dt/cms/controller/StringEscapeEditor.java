@@ -1,4 +1,4 @@
-package com.dt.cms.util.security;
+package com.dt.cms.controller;
 
 import java.beans.PropertyEditorSupport;
 
@@ -6,10 +6,10 @@ import org.springframework.web.util.HtmlUtils;
 import org.springframework.web.util.JavaScriptUtils;
 
 /**
+ * 与{@link BaseController}的@InitBinder结合 用于防止XSS攻击
  * 
- * @description 与spring mvc的@InitBinder结合 用于防止XSS攻击
- * @author ty
- * @date 2014年3月29日 下午4:24:51
+ * @author 岳海亮
+ * @date 2017年7月6日
  */
 public class StringEscapeEditor extends PropertyEditorSupport {
 

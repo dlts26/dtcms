@@ -15,7 +15,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import com.alibaba.fastjson.JSONObject;
 
 /**
- * web mvc 配置适配器：配置请求拦截器及视图跳转等信息
+ * web mvc配置适配器：配置请求拦截器及视图跳转等信息
  * @author 岳海亮
  * @date 2017年7月4日
  */
@@ -53,7 +53,6 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 
 	@Override
 	public void addViewControllers(ViewControllerRegistry registry) {
-		registry.addViewController("/test").setViewName("public/test");
 		registry.addViewController("/").setViewName("system/index");
 		registry.addViewController("/login").setViewName("system/login");
 	}

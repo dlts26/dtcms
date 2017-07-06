@@ -28,14 +28,13 @@ import com.dt.cms.domain.sys.User;
 import com.dt.cms.service.sys.PermissionService;
 import com.dt.cms.service.sys.RoleService;
 import com.dt.cms.service.sys.UserService;
-import com.dt.cms.util.login.CaptchaException;
-import com.dt.cms.util.login.UsernamePasswordCaptchaToken;
+import com.dt.cms.shiro.kaptcha.KaptchaException;
+import com.dt.cms.shiro.kaptcha.UsernamePasswordKaptchaToken;
 import com.dt.cms.util.security.Encodes;
 import com.google.common.base.Objects;
 
-
 @Component
-public class UserShiroRealm extends AuthorizingRealm{
+public class UserShiroRealm extends AuthorizingRealm {
 
 	private static Logger logger = LoggerFactory.getLogger(UserShiroRealm.class);
 	@Autowired
@@ -53,10 +52,9 @@ public class UserShiroRealm extends AuthorizingRealm{
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authcToken)
 			throws AuthenticationException {
-		UsernamePasswordCaptchaToken token = (UsernamePasswordCaptchaToken) authcToken;
+		UsernamePasswordKaptchaToken token = (UsernamePasswordKaptchaToken) authcToken;
 		User user = userService.getUser(token.getUsername());
-//		if (user != null && doCaptchaValidate(token)) {
-		if (user != null) {
+		if (user != null && doCaptchaValidate(token)) {
 			byte[] salt = Encodes.decodeHex(user.getSalt());
 			ShiroUser shiroUser = new ShiroUser(user.getId(), user.getLoginName(), user.getName());
 			// 设置用户session
@@ -105,11 +103,11 @@ public class UserShiroRealm extends AuthorizingRealm{
 	 * @param token
 	 * @return boolean
 	 */
-	protected boolean doCaptchaValidate(UsernamePasswordCaptchaToken token) {
+	protected boolean doCaptchaValidate(UsernamePasswordKaptchaToken token) {
 		String captcha = (String) SecurityUtils.getSubject().getSession()
-				.getAttribute(com.google.code.kaptcha.Constants.KAPTCHA_SESSION_KEY);
+				.getAttribute(com.gonvan.kaptcha.Constants.KAPTCHA_SESSION_KEY);
 		if (captcha != null && !captcha.equalsIgnoreCase(token.getCaptcha())) {
-			throw new CaptchaException("验证码错误！");
+			throw new KaptchaException("验证码错误！");
 		}
 		return true;
 	}

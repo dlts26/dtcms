@@ -1,20 +1,26 @@
-package com.dt.cms.util;
+package com.dt.cms.controller;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
-import org.jasig.cas.client.util.AssertionHolder;
 
 import com.dt.cms.domain.sys.User;
+import com.dt.cms.shiro.UserShiroRealm.ShiroUser;
 
+
+/**
+ * 用户操作类
+ * @author 岳海亮
+ * @date 2017年7月6日
+ */
 public class UserUtil {
 	/**
 	 * 获取当前用户对象shiro
 	 * 
 	 * @return shirouser
 	 */
-	public static String getCurrentUserId() {
-		String userId = (String) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
-		return userId;
+	public static ShiroUser getCurrentShiroUser(){
+		ShiroUser user=(ShiroUser) SecurityUtils.getSubject().getPrincipal();
+		return user;
 	}
 
 	/**

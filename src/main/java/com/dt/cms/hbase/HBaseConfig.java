@@ -1,12 +1,11 @@
 package com.dt.cms.hbase;
 
-import org.springframework.boot.context.properties.ConfigurationProperties;
 /**
  * hbase配置信息填充
  * @author 岳海亮
  * @date 2017年4月28日
  */
-@ConfigurationProperties(prefix = "hbase.zookeeper.property")
+//@ConfigurationProperties(prefix = "hbase.zookeeper.property")
 public class HBaseConfig {
 
 	private String quorum;

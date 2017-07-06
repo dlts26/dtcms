@@ -22,7 +22,6 @@ import org.apache.hadoop.hbase.util.Bytes;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 
 import com.alibaba.fastjson.JSONObject;
 
@@ -32,7 +31,7 @@ import com.alibaba.fastjson.JSONObject;
  * @author 岳海亮
  * @date 2017年4月28日
  */
-@Repository
+//@Repository 
 public class HBaseDAO {
 
 	private static final Logger logger = LoggerFactory.getLogger(HBaseDAO.class);

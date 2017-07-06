@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.shiro.SecurityUtils;
-//import org.apache.shiro.SecurityUtils;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 

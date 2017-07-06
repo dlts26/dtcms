@@ -1,4 +1,4 @@
-package com.dt.cms.util.login;
+package com.dt.cms.shiro.kaptcha;
 
 import org.apache.shiro.authc.AuthenticationException;
 
@@ -7,23 +7,23 @@ import org.apache.shiro.authc.AuthenticationException;
  * @author ty
  * @date 2014年12月2日 下午10:44:54
  */
-public class CaptchaException extends AuthenticationException {
+public class KaptchaException extends AuthenticationException {
 
 	private static final long serialVersionUID = 1L;
 
-	public CaptchaException() {
+	public KaptchaException() {
 		super();
 	}
 
-	public CaptchaException(String message, Throwable cause) {
+	public KaptchaException(String message, Throwable cause) {
 		super(message, cause);
 	}
 
-	public CaptchaException(String message) {
+	public KaptchaException(String message) {
 		super(message);
 	}
 
-	public CaptchaException(Throwable cause) {
+	public KaptchaException(Throwable cause) {
 		super(cause);
 	}
 }

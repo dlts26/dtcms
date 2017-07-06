@@ -1,7 +1,10 @@
 package com.dt.cms.shiro;
 
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
+
+import javax.servlet.Filter;
 
 import org.apache.shiro.cache.ehcache.EhCacheManager;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
@@ -14,6 +17,8 @@ import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.filter.DelegatingFilterProxy;
+
+import com.dt.cms.shiro.kaptcha.FormAuthenticationKaptchaFilter;
 
 @Configuration
 public class ShiroConfiguration {
@@ -64,7 +69,8 @@ public class ShiroConfiguration {
 	}
 
 	@Bean(name = "securityManager")
-	public DefaultWebSecurityManager getDefaultWebSecurityManager(@Qualifier("userShiroRealm")UserShiroRealm userShiroRealm) {
+	public DefaultWebSecurityManager getDefaultWebSecurityManager(
+			@Qualifier("userShiroRealm") UserShiroRealm userShiroRealm) {
 		DefaultWebSecurityManager dwsm = new DefaultWebSecurityManager();
 		dwsm.setRealm(userShiroRealm);
 		// 用户授权/认证信息Cache, 采用EhCache
@@ -96,6 +102,11 @@ public class ShiroConfiguration {
 		shiroFilterFactoryBean.setLoginUrl("/login");
 		shiroFilterFactoryBean.setSuccessUrl("/");
 		shiroFilterFactoryBean.setUnauthorizedUrl("/403");
+
+		Map<String, Filter> filters = new HashMap<>();
+		filters.put("authc", new FormAuthenticationKaptchaFilter());
+		shiroFilterFactoryBean.setFilters(filters);
+
 		Map<String, String> chains = new LinkedHashMap<String, String>();
 		// 开放页面
 		// 静态资源匿名访问
@@ -104,8 +115,8 @@ public class ShiroConfiguration {
 		chains.put("/css/**", "anon");
 
 		// 其他需要登陆
-		chains.put("/**", "user");
 		chains.put("/login", "authc");
+		chains.put("/**", "user");
 		shiroFilterFactoryBean.setFilterChainDefinitionMap(chains);
 		return shiroFilterFactoryBean;
 	}

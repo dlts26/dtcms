@@ -23,7 +23,7 @@ request.setAttribute("error", error);
 </head>
 <body>
 	<div>
-	<form id="loginForm" action="${ctx}/a/login" method="post">
+	<form id="loginForm" action="${ctx}/login" method="post">
 		<div class="login_top">
 			<div class="login_title">
 				后台管理系统登录页 
@@ -39,12 +39,12 @@ request.setAttribute("error", error);
 				<div class="login_main_pw">
 					<input type="password" id="password" name="password"/>
 				</div>
-				<%-- <div class="login_main_yzm">
+				<div class="login_main_yzm">
 					<div>
 					<input type="text" id="captcha" name="captcha"/>
-					<img alt="验证码" src="${ctx}/static/images/kaptcha.jpg" title="点击更换" id="img_captcha" onclick="javascript:refreshCaptcha();" style="height:45px;width:85px;float:right;margin-right:98px;"/>
+					<img alt="验证码" src="${ctx}/images/kaptcha.jpg" title="点击更换" id="img_captcha" onclick="javascript:refreshCaptcha();" style="height:45px;width:85px;float:right;margin-right:98px;"/>
 					</div>
-				</div> --%>
+				</div>
 				<div class="login_main_remb">
 					<input id="rm" name="rememberMe" type="hidden"/><!-- <label for="rm"><span>记住我</span></label> -->
 				</div>
@@ -56,11 +56,11 @@ request.setAttribute("error", error);
 	</form>
 	</div>
 	<c:choose>
-		<c:when test="${error eq 'com.md.livenews.system.utils.CaptchaException'}">
+<%-- 		<c:when test="${error eq 'com.md.livenews.system.utils.CaptchaException'}">
 			<script>
 				$(".login_main_errortip").html("验证码错误，请重试");
 			</script>
-		</c:when>
+		</c:when> --%>
 		<c:when test="${error eq 'org.apache.shiro.authc.UnknownAccountException'}">
 			<script>
 				$(".login_main_errortip").html("帐号或密码错误，请重试");
