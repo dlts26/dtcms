@@ -20,6 +20,10 @@ public class User extends BaseDomain<User> {
 	private String password;
 	private String plainPassword;
 	private String salt;
+	private Timestamp birthday;
+	private Short gender;
+	private String email;
+	private String phone;
 	private String icon;
 	private String state;
 	private String description;
@@ -44,13 +48,17 @@ public class User extends BaseDomain<User> {
 	}
 
 	/** full constructor */
-	public User(String loginName, String name, String password, String salt, String icon, String state,
-			String description, Integer loginCount, Timestamp previousVisit, Timestamp lastVisit, String delFlag,
-			Set<UserRole> userRoles) {
+	public User(String loginName, String name, String password, String salt, Timestamp birthday, Short gender,
+			String email, String phone, String icon, String state, String description,
+			Integer loginCount, Timestamp previousVisit, Timestamp lastVisit, String delFlag, Set<UserRole> userRoles) {
 		this.loginName = loginName;
 		this.name = name;
 		this.password = password;
 		this.salt = salt;
+		this.birthday = birthday;
+		this.gender = gender;
+		this.email = email;
+		this.phone = phone;
 		this.icon = icon;
 		this.state = state;
 		this.description = description;
@@ -109,6 +117,38 @@ public class User extends BaseDomain<User> {
 		this.salt = salt;
 	}
 
+	public Timestamp getBirthday() {
+		return birthday;
+	}
+
+	public void setBirthday(Timestamp birthday) {
+		this.birthday = birthday;
+	}
+
+	public Short getGender() {
+		return gender;
+	}
+
+	public void setGender(Short gender) {
+		this.gender = gender;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
 	public String getIcon() {
 		return icon;
 	}
@@ -116,7 +156,6 @@ public class User extends BaseDomain<User> {
 	public void setIcon(String icon) {
 		this.icon = icon;
 	}
-
 	public String getState() {
 		return state;
 	}

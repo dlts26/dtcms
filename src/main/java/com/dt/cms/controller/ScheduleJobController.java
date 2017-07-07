@@ -1,4 +1,4 @@
-package com.dt.cms.controller.sys;
+package com.dt.cms.controller;
 
 import java.util.HashMap;
 import java.util.List;
@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dt.cms.domain.sys.ScheduleJob;
-import com.dt.cms.service.sys.ScheduleJobService;
+import com.dt.cms.service.ScheduleJobService;
 
 /**
  * 定时任务 controller

@@ -4,7 +4,7 @@
 <head>
 <title>Insert title here</title>
 <%@ include file="/WEB-INF/views/include/easyui.jsp"%>
-<script type="text/javascript" src="${ctx}/static/plugins/quartzCron/cron.js" charset="utf-8"></script>
+<script type="text/javascript" src="${ctx}/plugins/quartzCron/cron.js" charset="utf-8"></script>
 <style>
 		body{margin: 0px;padding: 0px}
 		.line{

@@ -1,4 +1,4 @@
-package com.dt.cms.service.sys;
+package com.dt.cms.service;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -22,20 +22,19 @@ import org.quartz.TriggerBuilder;
 import org.quartz.TriggerKey;
 import org.quartz.impl.matchers.GroupMatcher;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.quartz.SchedulerFactoryBean;
 import org.springframework.stereotype.Service;
-import org.springframework.web.context.ContextLoader;
-import org.springframework.web.context.WebApplicationContext;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.dt.cms.SpringContextUtil;
 import com.dt.cms.domain.sys.ScheduleJob;
 
 /**
  * 定时任务 service
- * 
- * @author ty
- * @date 2015年1月13日
+ * @author 岳海亮
+ * @date 2017年7月7日
  */
 @Service
+@Transactional(readOnly = true)
 public class ScheduleJobService {
 
 	private static final Logger log = Logger.getLogger(ScheduleJobService.class);
@@ -48,6 +47,7 @@ public class ScheduleJobService {
 	 * 
 	 * @param ScheduleJob
 	 */
+	@Transactional(readOnly = false)
 	public void add(ScheduleJob scheduleJob) {
 		@SuppressWarnings("rawtypes")
 		Class job = null;
@@ -230,6 +230,7 @@ public class ScheduleJobService {
 	 * @param group
 	 *            任务组
 	 */
+	@Transactional(readOnly = false)
 	public void stopJob(String name, String group) {
 		JobKey key = new JobKey(name, group);
 		try {
@@ -247,6 +248,7 @@ public class ScheduleJobService {
 	 * @param group
 	 *            任务组
 	 */
+	@Transactional(readOnly = false)
 	public void restartJob(String name, String group) {
 		JobKey key = new JobKey(name, group);
 		try {
@@ -264,6 +266,7 @@ public class ScheduleJobService {
 	 * @param group
 	 *            任务组
 	 */
+	@Transactional(readOnly = false)
 	public void startNowJob(String name, String group) {
 		JobKey jobKey = JobKey.jobKey(name, group);
 		try {
@@ -281,6 +284,7 @@ public class ScheduleJobService {
 	 * @param group
 	 *            任务组
 	 */
+	@Transactional(readOnly = false)
 	public void delJob(String name, String group) {
 		JobKey key = new JobKey(name, group);
 		try {
@@ -300,6 +304,7 @@ public class ScheduleJobService {
 	 * @param cron
 	 *            cron表达式
 	 */
+	@Transactional(readOnly = false)
 	public void modifyTrigger(String name, String group, String cron) {
 		try {
 			TriggerKey key = TriggerKey.triggerKey(name, group);
@@ -316,6 +321,7 @@ public class ScheduleJobService {
 	/**
 	 * 暂停调度器
 	 */
+	@Transactional(readOnly = false)
 	public void stopScheduler() {
 		try {
 			if (!quatzScheduler.isInStandbyMode()) {
@@ -328,8 +334,7 @@ public class ScheduleJobService {
 
 	public Set<String> getValidateJobClasses() {
 		Set<String> set = new HashSet<String>();
-		WebApplicationContext context = ContextLoader.getCurrentWebApplicationContext();
-		Map<String, Job> map = context.getBeansOfType(Job.class);
+		Map<String, Job> map = SpringContextUtil.getBeansOfType(Job.class);
 		for (Map.Entry<String, Job> entry : map.entrySet()) {
 			set.add(entry.getValue().getClass().getName());
 		}

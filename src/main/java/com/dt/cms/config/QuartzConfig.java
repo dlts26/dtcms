@@ -9,7 +9,7 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.scheduling.quartz.SchedulerFactoryBean;
 
 @Configuration
-public class QuartzSchedulerConfig {
+public class QuartzConfig {
 
 	@Autowired
 	private DataSource dataSource;
