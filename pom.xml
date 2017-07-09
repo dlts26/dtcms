@@ -14,15 +14,8 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	<repositories>
-		<repository>
-			<id>maven-central</id>
-			<name>maven-central</name>
-			<url>http://10.205.59.16/nexus/content/groups/public/</url>
-			<layout>default</layout>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-		</repository>
+		<!-- <repository> <id>maven-central</id> <name>maven-central</name> <url>http://10.205.59.16/nexus/content/groups/public/</url> 
+			<layout>default</layout> <releases> <enabled>true</enabled> </releases> </repository> -->
 	</repositories>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -202,6 +195,16 @@
 		<dependency>
 			<groupId>org.quartz-scheduler</groupId>
 			<artifactId>quartz</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>com.mchange</groupId>
+					<artifactId>c3p0</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>com.mchange</groupId>
+					<artifactId>mchange-commons-java</artifactId>
+				</exclusion>
+			</exclusions>
 			<version>2.3.0</version>
 		</dependency>
 		<dependency>
