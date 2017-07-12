@@ -4,7 +4,7 @@
 <head>
 <title></title>
 <%@ include file="/WEB-INF/views/include/easyui.jsp"%>
-<script src="${ctx}/static/plugins/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
+<script src="${ctx}/plugins/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
 
 </head>
 <body style="font-family: '微软雅黑'">

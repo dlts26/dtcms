@@ -4,7 +4,7 @@
 <head>
 <title>后台管理系统</title>
 <%@ include file="/WEB-INF/views/include/easyui.jsp"%>
-<script type="text/javascript" src="${ctx }/plugins/artTemplate/dist/template.js"></script>
+<script type="text/javascript" src="${ctx}/plugins/artTemplate/dist/template.js"></script>
 <script type="text/javascript" src="${ctx}/plugins/jquery-validation/1.11.1/jquery.validate.min.js"></script>
 <script type="text/javascript" src="${ctx}/plugins/jquery/jquery.form.js"></script>
 

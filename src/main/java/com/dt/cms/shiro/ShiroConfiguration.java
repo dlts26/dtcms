@@ -114,6 +114,7 @@ public class ShiroConfiguration {
 		chains.put("/plugins/**", "anon");
 		chains.put("/css/**", "anon");
 		chains.put("/api/**", "anon");
+		
 
 		// 其他需要登陆
 		chains.put("/login", "authc");

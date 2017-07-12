@@ -40,7 +40,7 @@ public class WebRegConfig {
 		ServletRegistrationBean registration = new ServletRegistrationBean(kaptchaServlet);
 		registration.setEnabled(true);
 		// 更多参数配置，参见https://my.oschina.net/wca/blog/1186831
-		registration.addInitParameter("kaptcha.textproducer.char.string", "1234567890");
+		registration.addInitParameter("kaptcha.textproducer.char.string", "0");
 		registration.addInitParameter("kaptcha.textproducer.char.length", "1");
 		registration.addUrlMappings("/images/kaptcha.jpg");
 		return registration;

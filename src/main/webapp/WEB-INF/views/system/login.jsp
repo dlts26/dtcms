@@ -3,6 +3,7 @@
 <%@ page import="org.apache.shiro.authc.ExcessiveAttemptsException"%>
 <%@ page import="org.apache.shiro.authc.IncorrectCredentialsException"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page isELIgnored="false" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <%
 String error = (String)request.getAttribute(FormAuthenticationFilter.DEFAULT_ERROR_KEY_ATTRIBUTE_NAME);
@@ -41,8 +42,8 @@ request.setAttribute("error", error);
 				</div>
 				<div class="login_main_yzm">
 					<div>
-					<input type="text" id="captcha" name="captcha"/>
-					<img alt="验证码" src="${ctx}/images/kaptcha.jpg" title="点击更换" id="img_captcha" onclick="javascript:refreshCaptcha();" style="height:45px;width:85px;float:right;margin-right:98px;"/>
+					<input type="text" id="captcha" name="captcha" value="0"/>
+					<img alt="验证码" src="${ctx}/images/kaptcha.jpg"  title="点击更换" id="img_captcha" onclick="javascript:refreshCaptcha();" style="height:45px;width:85px;float:right;margin-right:98px;"/>
 					</div>
 				</div>
 				<div class="login_main_remb">
