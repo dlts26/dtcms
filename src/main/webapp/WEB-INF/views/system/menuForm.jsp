@@ -60,11 +60,14 @@ $('#pid').combotree({
     textFiled : 'name',
 	parentField : 'pid',
 	iconCls: 'icon',
+	editable:true,
     animate:true
 });  
 
 $('#mainform').form({    
-    onSubmit: function(){    
+    onSubmit: function(){   
+    	var n = $('#pid').combotree("tree").tree('getSelected');
+    	alert(n.text);
     	var isValid = $(this).form('validate');
 		return isValid;	// 返回false终止表单提交
     },    

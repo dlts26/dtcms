@@ -18,10 +18,8 @@ import com.dt.cms.shiro.cas.UserShiroCasRealm;
 
 /**
  * 角色权限service
- * 
- * @Author 岳海亮
- * @Mail yhl@feheadline.com
- * @Date 2016年5月9日
+ * @author 岳海亮
+ * @date 2017年7月12日
  */
 @Service
 @Transactional(readOnly = true)

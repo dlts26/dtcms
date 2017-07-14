@@ -69,7 +69,6 @@ function add() {
 	if(row){
 		parentPermId=row.id;
 	}
-	
 	d=$('#dlg').dialog({    
 	    title: '添加菜单',    
 	    width: 450,    

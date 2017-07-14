@@ -34,6 +34,7 @@ public class WebAppStart extends SpringBootServletInitializer {
 		ApplicationContext context = SpringApplication.run(WebAppStart.class, args);
 		SpringContextUtil.setApplicationContext(context);
 		logger.info("Infotag Webapp Start Success");
+
 	}
 
 }

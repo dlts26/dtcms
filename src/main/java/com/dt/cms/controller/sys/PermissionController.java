@@ -133,7 +133,7 @@ public class PermissionController extends BaseController {
 	@RequiresPermissions("sys:perm:add")
 	@RequestMapping(value = "create", method = RequestMethod.POST)
 	@ResponseBody
-	public String create(Permission permission, Model model) {
+	public String create(Permission permission) {
 		permissionService.save(permission);
 		return "success";
 	}
@@ -178,7 +178,7 @@ public class PermissionController extends BaseController {
 	@RequiresPermissions("sys:perm:update")
 	@RequestMapping(value = "update", method = RequestMethod.POST)
 	@ResponseBody
-	public String update(@ModelAttribute("permission") Permission permission, Model model) {
+	public String update(@ModelAttribute("permission") Permission permission) {
 		permissionService.update(permission);
 		return "success";
 	}
