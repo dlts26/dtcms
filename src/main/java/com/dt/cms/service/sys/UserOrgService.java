@@ -16,7 +16,6 @@ import com.dt.cms.service.BaseService;
  * 用户机构Service
  * 
  * @Author 岳海亮
- * @Mail yhl@feheadline.com
  * @Date 2016年5月9日
  */
 @Service

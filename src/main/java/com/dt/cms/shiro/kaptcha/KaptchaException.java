@@ -4,8 +4,8 @@ import org.apache.shiro.authc.AuthenticationException;
 
 /**
  * 验证码异常类
- * @author ty
- * @date 2014年12月2日 下午10:44:54
+ * @author 岳海亮
+ * @date 2017年7月18日
  */
 public class KaptchaException extends AuthenticationException {
 

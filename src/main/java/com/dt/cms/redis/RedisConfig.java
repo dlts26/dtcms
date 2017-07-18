@@ -15,6 +15,11 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 import com.dt.cms.shiro.redis.RedisObjectSerializer;
 
+/**
+ * redis配置类
+ * @author 岳海亮
+ * @date 2017年7月18日
+ */
 //@Configuration
 //@EnableCaching 默认关闭
 public class RedisConfig extends CachingConfigurerSupport {

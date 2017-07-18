@@ -9,6 +9,11 @@ import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.beanutils.converters.DateConverter;
 import org.apache.commons.lang3.StringUtils;
 
+/**
+ * 
+ * @author 岳海亮
+ * @date 2017年7月18日
+ */
 public class ConvertUtils {
 
 	static {

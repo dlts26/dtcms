@@ -11,7 +11,6 @@ import com.dt.cms.service.BaseService;
  * 字典service
  * 
  * @Author 岳海亮
- * @Mail yhl@feheadline.com
  * @Date 2016年5月4日
  */
 @Service("dictService")

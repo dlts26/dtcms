@@ -20,6 +20,12 @@ import org.springframework.web.filter.DelegatingFilterProxy;
 
 import com.dt.cms.shiro.kaptcha.FormAuthenticationKaptchaFilter;
 
+
+/**
+ * 集成shiro的配置类
+ * @author 岳海亮
+ * @date 2017年7月18日
+ */
 @Configuration
 public class ShiroConfiguration {
 

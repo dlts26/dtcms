@@ -13,13 +13,10 @@ import com.dt.cms.util.ConvertUtils;
 import com.dt.cms.util.ServletUtils;
 import com.dt.cms.util.StringUtils;
 
-
-
-
 /**
  * 与具体ORM实现无关的属性过滤条件封装类, 主要记录页面中简单的搜索过滤条件.
- * 
- * @author calvin
+ * @author 岳海亮
+ * @date 2017年7月18日
  */
 public class PropertyFilter {
 
@@ -96,8 +93,7 @@ public class PropertyFilter {
 	}
 
 	/**
-	 * 从HttpRequest中创建PropertyFilter列表
-	 * PropertyFilter命名规则为Filter属性前缀_比较类型属性类型_属性名.
+	 * 从HttpRequest中创建PropertyFilter列表 PropertyFilter命名规则为Filter属性前缀_比较类型属性类型_属性名.
 	 * 
 	 * eg. filter_EQS_name filter_LIKES_name_OR_email
 	 */

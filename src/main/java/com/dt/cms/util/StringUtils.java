@@ -12,8 +12,8 @@ import org.apache.commons.lang3.StringEscapeUtils;
 
 /**
  * 字符串工具类, 继承org.apache.commons.lang3.StringUtils类
- * @author ThinkGem
- * @version 2013-05-22
+ * @author 岳海亮
+ * @date 2017年7月18日
  */
 public class StringUtils extends org.apache.commons.lang3.StringUtils {
 	

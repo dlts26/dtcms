@@ -33,6 +33,12 @@ import com.dt.cms.shiro.kaptcha.UsernamePasswordKaptchaToken;
 import com.dt.cms.util.security.Encodes;
 import com.google.common.base.Objects;
 
+
+/**
+ * 实现shiro的授权认证realm
+ * @author 岳海亮
+ * @date 2017年7月18日
+ */
 @Component
 public class UserShiroRealm extends AuthorizingRealm {
 

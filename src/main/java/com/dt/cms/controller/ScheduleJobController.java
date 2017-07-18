@@ -23,9 +23,8 @@ import com.dt.cms.service.ScheduleJobService;
 
 /**
  * 定时任务 controller
- * 
- * @author ty
- * @date 2015年1月14日
+ * @author 岳海亮
+ * @date 2017年7月18日
  */
 @Controller
 @RequestMapping("system/scheduleJob")

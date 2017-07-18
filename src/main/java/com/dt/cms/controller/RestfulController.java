@@ -1,7 +1,6 @@
 package com.dt.cms.controller;
 
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -18,10 +17,10 @@ import com.dt.cms.persistant.PropertyFilter;
 import com.dt.cms.service.sys.UserService;
 
 /**
- * 用户controller
+ * 为前端跨域调用做的接口
  * 
- * @author ty
- * @date 2015年1月13日
+ * @author 岳海亮
+ * @date 2017年7月18日
  */
 @Controller
 @RequestMapping("api")
@@ -40,7 +39,7 @@ public class RestfulController extends BaseController {
 		List<PropertyFilter> filters = PropertyFilter.buildFromHttpRequest(request);
 		page = userService.search(page, filters);
 		String jsonStr = JSONObject.toJSONString(getEasyUIData(page));
-		return "jsonpCallback("+jsonStr+")";
+		return "jsonpCallback(" + jsonStr + ")";
 	}
 
 }

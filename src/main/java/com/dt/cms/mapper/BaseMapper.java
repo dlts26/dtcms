@@ -4,6 +4,12 @@ import java.util.List;
 
 import com.dt.cms.entity.Page;
 
+/**
+ * 基础mapper
+ * @author 岳海亮
+ * @date 2017年7月18日
+ * @param <T>
+ */
 public interface BaseMapper<T> {
 
 	/**

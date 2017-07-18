@@ -10,7 +10,12 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Component;
 
-@Component
+/**
+ * redis操作类
+ * @author 岳海亮
+ * @date 2017年7月18日
+ */
+//@Component
 public class RedisDAO {
 
 	@Autowired

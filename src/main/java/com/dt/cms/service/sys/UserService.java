@@ -18,7 +18,6 @@ import com.dt.cms.util.security.Encodes;
  * 用户service
  * 
  * @Author 岳海亮
- * @Mail yhl@feheadline.com
  * @Date 2016年5月9日
  */
 @Service

@@ -5,8 +5,8 @@ import java.io.StringWriter;
 
 /**
  * 关于异常的工具类.
- * 
- * @author calvin
+ * @author 岳海亮
+ * @date 2017年7月18日
  */
 public class Exceptions {
 

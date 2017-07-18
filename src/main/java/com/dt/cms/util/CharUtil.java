@@ -2,9 +2,8 @@ package com.dt.cms.util;
 
 /**
  * 字符处理工具类
- * 
- * @author bennyyue
- *
+ * @author 岳海亮
+ * @date 2017年7月18日
  */
 public class CharUtil {
 
