@@ -620,6 +620,12 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
 		return returnString;
 	}
 
+	
+	/**
+	 * 删除所有空格字符
+	 * @param result
+	 * @return
+	 */
 	public static String removeSpace(String result) {
 		result = result.replaceAll("[\t|　| |\n]", "");
 		return result;

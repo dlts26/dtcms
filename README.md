@@ -35,3 +35,6 @@
 * jeesite:https://github.com/dlts26/jeesite.git
 * shishuomcs: https://git.oschina.net/shishuo/CMS.git
 * iBase4j：https://git.oschina.net/iBase4J/iBase4J.git
+编码规范：
+service层函数定义：save,modify,remove,get
+mapper层函数定义：insert,update,delete,select
